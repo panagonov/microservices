@@ -1,12 +1,11 @@
 -------- build ---------
-docker build . -f promoto-base.Dockerfile -t bioseek/promoto-base:1.0 --secret id=git_secret,src=../_secrets/git-secret.txt --no-cache --progress=plain
-docker build . -f promoto.Dockerfile -t bioseek/promoto:1.0  --no-cache --progress=plain
-docker build . -f promoto-image.Dockerfile -t bioseek/promoto-image:1.0  --no-cache --progress=plain
+docker build . -f microservices.Dockerfile -t bioseek/microservices:1.0  --no-cached
+
+-------- build linux ------
+export DOCKER_BUILDKIT=1 && export COMPOSE_DOCKER_CLI_BUILD=1 && docker build . -f microservices.Dockerfile -t bioseek/microservices:1.0  --no-cache
 
 -------- push ---------
-docker image push bioseek/promoto-base:1.0
-docker image push bioseek/promoto:1.0
-docker image push bioseek/promoto-image:1.0
+docker image push bioseek/microservices:1.0
 
 -------- run ---------
 docker compose  rm
