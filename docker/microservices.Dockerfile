@@ -30,5 +30,3 @@ RUN cd file_convert && npm install
 RUN cd file_manager && npm install
 RUN cd file_utils && npm install
 RUN cd redis_service && npm install
-
-CMD ["npm", "run", "start"]

@@ -1,0 +1,13 @@
+-------- build ---------
+docker build . -f promoto-base.Dockerfile -t bioseek/promoto-base:1.0 --secret id=git_secret,src=../_secrets/git-secret.txt --no-cache --progress=plain
+docker build . -f promoto.Dockerfile -t bioseek/promoto:1.0  --no-cache --progress=plain
+docker build . -f promoto-image.Dockerfile -t bioseek/promoto-image:1.0  --no-cache --progress=plain
+
+-------- push ---------
+docker image push bioseek/promoto-base:1.0
+docker image push bioseek/promoto:1.0
+docker image push bioseek/promoto-image:1.0
+
+-------- run ---------
+docker compose  rm
+docker compose  up

@@ -25,40 +25,43 @@ services:
       dockerfile: textract.Dockerfile
     networks:
       - elastic
-  # file_manager:
-  #   image: promoto/microservices:1.0
-  #   platform: linux/x86_64
-  #   volumes:
-  #     - type: bind
-  #       source: ./services.env
-  #       target: /usr/src/app/.env
-  #   build:
-  #     context: ./
-  #     dockerfile: microservices.Dockerfile
-  #   networks:
-  #     - elastic
-  # file_utils:
-  #   image: promoto/microservices:1.0
-  #   platform: linux/x86_64
-  #   volumes:
-  #     - type: bind
-  #       source: ./services.env
-  #       target: /usr/src/app/.env
-  #   build:
-  #     context: ./
-  #     dockerfile: microservices.Dockerfile
-  #   networks:
-  #     - elastic
-  # unoconv:
-  #   image: promoto/microservices:1.0
-  #   platform: linux/x86_64
-  #   ports:
-  #     - 3314:3314
-  #   build:
-  #     context: ./
-  #     dockerfile: microservices.Dockerfile
-  #   networks:
-  #     - elastic
+  file_manager:
+    image: bioseek/microservices:1.0
+    platform: linux/x86_64
+    volumes:
+      - type: bind
+        source: ./services.env
+        target: /usr/src/app/.env
+    build:
+      context: ./
+      dockerfile: microservices.Dockerfile
+    command: npm run file-manager
+    networks:
+      - elastic
+  file_utils:
+    image: bioseek/microservices:1.0
+    platform: linux/x86_64
+    volumes:
+      - type: bind
+        source: ./services.env
+        target: /usr/src/app/.env
+    build:
+      context: ./
+      dockerfile: microservices.Dockerfile
+    command: npm run file-utils
+    networks:
+      - elastic
+  unoconv:
+    image: bioseek/microservices:1.0
+    platform: linux/x86_64
+    ports:
+      - 3314:3314
+    build:
+      context: ./
+      dockerfile: microservices.Dockerfile
+    command: npm run file-convert
+    networks:
+      - elastic
 networks:
   elastic:
     driver: bridge
