@@ -1,5 +1,5 @@
 -------- build ---------
-docker build . -f microservices.Dockerfile -t bioseek/microservices:1.0  --no-cached
+docker build . -f microservices.Dockerfile -t bioseek/microservices:1.0  --no-cache
 
 -------- build linux ------
 export DOCKER_BUILDKIT=1 && export COMPOSE_DOCKER_CLI_BUILD=1 && docker build . -f microservices.Dockerfile -t bioseek/microservices:1.0  --no-cache

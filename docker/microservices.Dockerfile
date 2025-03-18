@@ -1,9 +1,13 @@
 FROM ubuntu:20.04
 RUN apt-get update
+ENV DEBIAN_FRONTEND="noninteractive" \
+    TZ="Europe/Sofia"
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y curl git build-essential 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y fontconfig ttf-mscorefonts-installer fonts-dejavu fonts-liberation fonts-freefont-ttf
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y fontconfig fonts-dejavu fonts-liberation fonts-freefont-ttf
 RUN fc-cache -vr
 
+RUN DEBIAN_FRONTEND="noninteractive" && apt-get install -y libcairo2-dev libpango1.0-dev libgif-dev libjpeg-dev
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y  poppler-data poppler-utils
 RUN DEBIAN_FRONTEND="noninteractive" && apt-get install -y ghostscript imagemagick unoconv
 RUN mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.off
 
