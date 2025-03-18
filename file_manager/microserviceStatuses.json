@@ -1,0 +1,7 @@
+{
+    "running"   : "running",
+    "idle"      : "idle",
+    "processing": "processing",
+    "stopping"  : "stopping",
+    "stop"      : "stop"
+}

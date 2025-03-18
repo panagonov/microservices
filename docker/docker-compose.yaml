@@ -1,0 +1,64 @@
+version: '3.7'
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    deploy:
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: 1024m
+        reservations:
+          cpus: "0.1"
+          memory: 128m
+    networks:
+      - elastic
+  textract:
+    image: textract
+    platform: linux/x86_64
+    ports:
+      - 3312:8080
+    build:
+      context: ./
+      dockerfile: textract.Dockerfile
+    networks:
+      - elastic
+  # file_manager:
+  #   image: promoto/microservices:1.0
+  #   platform: linux/x86_64
+  #   volumes:
+  #     - type: bind
+  #       source: ./services.env
+  #       target: /usr/src/app/.env
+  #   build:
+  #     context: ./
+  #     dockerfile: microservices.Dockerfile
+  #   networks:
+  #     - elastic
+  # file_utils:
+  #   image: promoto/microservices:1.0
+  #   platform: linux/x86_64
+  #   volumes:
+  #     - type: bind
+  #       source: ./services.env
+  #       target: /usr/src/app/.env
+  #   build:
+  #     context: ./
+  #     dockerfile: microservices.Dockerfile
+  #   networks:
+  #     - elastic
+  # unoconv:
+  #   image: promoto/microservices:1.0
+  #   platform: linux/x86_64
+  #   ports:
+  #     - 3314:3314
+  #   build:
+  #     context: ./
+  #     dockerfile: microservices.Dockerfile
+  #   networks:
+  #     - elastic
+networks:
+  elastic:
+    driver: bridge

@@ -1,0 +1,16 @@
+{
+  "name": "redis_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "redis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redis": "^4.0.1",
+    "tslib": "^2.4.0",
+    "uuid": "^8.3.2"
+  }
+}
